@@ -2,11 +2,38 @@
 declare (strict_types=1);
 
 // Läs in gemensamma funktioner
+require_once "funktioner.php";
 
 // Läs och kontrollera indata
+// Rätt metod
+if ($_SERVER['REQUEST_METHOD']!=='POST') {
+    $error=new stdClass();
+    $error->meddelande=["Wrong method", "Sidan ska anropas med POST"];
+    skickaJSON($error, 405);
+}
+
+// Kontrollera id
+$id=filter_input(INPUT_POST, "id", FILTER_VALIDATE_INT);
+if(!$id || $id<1) {
+    $error=new stdClass();
+    $error->meddelande=["Bad request", "'id' saknas eller är ogiltigt"];
+    skickaJSON($error,400);
+}
 
 // Koppla mot databasen
+$db=connectDB();
 
 // toggla checked-värdet
+$sql="UPDATE varor SET checked=NOT(checked) where id=:id";
+$stmt=$db->prepare($sql);
+$stmt->execute(['id'=>$id]);
+
+if($stmt->execute(['id'=>$id]) || $stmt->rowCount()!==1) {
+    $error=new stdClass();
+    $error->meddelande=["Bad request", "Kunde inte uppdatera varan", implode(",", $stmt->errorInfo())];
+    skickaJSON($error 400);
+}
+
 
 // Skicka svar
+skickaJSON(['meddelande'=>'OK']);
