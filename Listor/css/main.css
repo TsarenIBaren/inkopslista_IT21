@@ -1,0 +1,29 @@
+body {
+    background-color: lightblue;
+    text-align: center;
+    padding: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+main {
+    border: 2px solid hotpink;
+    border-radius: 2.5em;
+    border-width: 0.5em;
+
+}
+
+table {
+    margin: auto;
+}
+
+.dot {
+    position: static;
+    margin-right:16vh;
+    margin-left:16vh;
+    height: 10vh;
+    width: 10vh;
+    background-color: white;
+    border-radius: 100%;
+    display: inline-block;
+  }

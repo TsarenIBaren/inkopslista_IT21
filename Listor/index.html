@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/lista.js">
+
+    </script>
+    <title>Listor</title>
+</head>
+<body>
+    <header>
+        <h1>Inköpslista</h1>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </header>
+    <main>
+        <form>
+            <input type="text" id="varainput">
+            <button type="button" id="varabutton">Lägg till</button>
+        </form>
+        <table>
+            <tr><th>Vara</th><th></th><th></th></tr>
+            
+            <!--BABABOI ta bort detta senare efter JS-->
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Mjölk</td>
+                <td><i class="material-icons">edit</i></td>
+                <td><i class="material-icons">delete</i></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Korv</td>
+                <td><i class="material-icons">edit</i></td>
+                <td><i class="material-icons">delete</i></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Bröd</td>
+                <td><i class="material-icons">edit</i></td>
+                <td><i class="material-icons">delete</i></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Smör</td>
+                <td><i class="material-icons">edit</i></td>
+                <td><i class="material-icons">delete</i></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>Frukt</td>
+                <td><i class="material-icons">edit</i></td>
+                <td><i class="material-icons">delete</i></td>
+            </tr>
+            <!--BABABOI ta bort detta senare efter JS-->
+
+        </table>
+        <div id="deletebutton">
+            <button id="allabutton">Radera alla</button>
+            <button id="valdabutton">Radera alla</button>
+        </div>
+    </main>
+</body>
+</html>
