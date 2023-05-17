@@ -7,9 +7,21 @@ body {
 }
 
 main {
-    border: 2px solid hotpink;
+    border: 2px solid #ff69b4;
     border-radius: 2.5em;
     border-width: 0.5em;
+
+}
+
+button {
+    border: 2px solid #ff69b4;
+    border-radius: 0.75em;
+
+}
+
+#varainput {
+    border: 2px solid #ff69b4;
+    border-radius: 0.75em;
 
 }
 
