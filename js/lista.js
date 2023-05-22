@@ -35,14 +35,15 @@ function appendProducts(data){
         checkboxtd.appendChild(checkbox);
 
         let texttd=document.createElement("td");
+        texttd.id="vara"+data[i].id;
         texttd.innerHTML=data[i].namn;
-
+        
         let redigeratd=document.createElement("td");
         let redigeraicon=document.createElement("i");
         redigeraicon.classList.add("material-icons");
         redigeraicon.innerHTML="edit";
         redigeraicon.onclick=function(){
-            editProduct(data[i].id);
+            editVaraForm(data[i].id);
         }
         redigeratd.appendChild(redigeraicon);
 
