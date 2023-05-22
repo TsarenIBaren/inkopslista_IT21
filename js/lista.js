@@ -2,6 +2,9 @@ serverurl='php/'
 
 window.onload = function(){
     getProducts();
+    document.getElementById("varabutton").onclick = function(){
+        saveProduct();
+    }
 }
 
 function getProducts(){

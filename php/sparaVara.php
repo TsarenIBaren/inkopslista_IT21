@@ -19,7 +19,7 @@ if(!isset($vara) || mb_strlen($vara)>50) {
     $error->meddelande=["bad input", "Parametern 'vara' saknas eller är för lång (max 50 tecken)"];
     skickaJSON($error, 400);
 }
-
+    
 //koppla mot databas
 $db=connectDB();
 

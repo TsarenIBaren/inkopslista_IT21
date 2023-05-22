@@ -30,7 +30,7 @@ table {
 }
 
 .dot {
-    position: static;
+    position: relative;
     margin-right:16vh;
     margin-left:16vh;
     height: 10vh;
