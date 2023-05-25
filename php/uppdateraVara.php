@@ -52,5 +52,5 @@ if($stmt->rowCount()===1) {
 } else {
     $error = new stdClass();
     $error->meddelande=["Kunde inte uppdatera vara"];
-    skickaJSON($error, 500);
+    skickaJSON($error, 400);
 }

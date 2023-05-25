@@ -37,7 +37,7 @@ function lasVara(int $id):stdClass {
 }
 function kryssaVara(int $id):void {
     $db=connectDB();
-    $db->query("UPDATE vara SET checked=1 WHERE id=$id");
+    $db->query("UPDATE varor SET checked=1 WHERE id=$id");
 }
 function hamtaAllaVaror():array {
     $db = connectDB();
@@ -52,5 +52,117 @@ function aterstallDB($varor):void {
 
     foreach ($varor as $value) {
         $stmt->execute($value);
+    }
+}
+
+function idSaknas($curlHandle, string $vara = null)
+{
+    // Sätt anropsmetod till POST
+    curl_setopt($curlHandle, CURLOPT_POST, true);
+
+    // Sätt optional data....
+    if($vara) {
+    $data=['vara' => $vara];
+    curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $data);
+    }
+
+    // Anropa och ta hand om svaret
+    $jsonSvar = curl_exec($curlHandle);
+    $status = curl_getinfo($curlHandle, CURLINFO_RESPONSE_CODE);
+
+    // Kontrollera svar och skriv ut resultat
+    if($status === 400) {
+        echo "<p class='ok'>Förväntat svar 400</p>";
+    } else {
+        echo "<p class='error'>Fick status=status istället för förväntat 400</p>";
+    }
+}
+
+function idFinnsInte($curlHandle, string $vara = null) {
+    // Koppla mot databas och starta transaktion
+    $db=connectDB();
+
+    // Skapa en ny post
+    $id = skapaVara("test");
+
+    // Radera den nya posten
+    raderaVara($id);
+
+    // Sätt anropsmetod till POST
+    curl_setopt($curlHandle, CURLOPT_POST, true);
+
+    // Lägg data till anropet
+    $data=['id' => $id];
+
+    // Sätt optional data....
+    if ($vara) {
+        $data['vara'] = $vara;
+    }
+
+    curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $data);
+
+    // Skicka anrop
+    $jsonSvar = curl_exec($curlHandle);
+    $status = curl_getinfo($curlHandle, CURLINFO_RESPONSE_CODE);
+
+    // Kontrollera svar och skriv ut resultat
+    if($status === 400) {
+        echo "<p class='ok'>Förväntat svar 400</p>";
+    } else {
+        echo "<p class='error'>Fick status=status istället för förväntat 400</p>";
+    }
+
+    // Rulla tillbaka alla transaktioner
+}
+
+function idNegativt($curlHandle, string $vara = null)
+{
+    // Sätt anropsmetod till POST
+    curl_setopt($curlHandle, CURLOPT_POST, true);
+
+    // Lägg till data till anropet
+    $data = ['id' => -1];
+    
+    // Sätt optional data....
+    if ($vara) {
+        $data['vara'] = $vara;
+    }
+
+    curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $data);
+
+    // Skicka anrop
+    $jsonSvar = curl_exec($curlHandle);
+    $status = curl_getinfo($curlHandle, CURLINFO_RESPONSE_CODE);
+
+    // Kontrollera svar och skriv ut resultatet
+    if ($status === 400) {
+        echo "<p class='ok'>Fick förväntat svar 400</p>";
+    } else {
+        echo "<p class='error'>Fick status=$status istället för förväntat 400</p>";
+    }
+}
+
+function idBokstav($curlHandle, string $vara = null) {
+    // Sätt anropsmetod till POST
+    curl_setopt($curlHandle, CURLOPT_POST, true);
+
+    // Lägg till data till anropet
+    $data = ['id' => "id"];
+    // Sätt optional data....
+    if ($vara) {
+        $data['vara'] = $vara;
+    }
+
+    curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $data);
+
+    // Skicka anrop
+    $jsonSvar = curl_exec($curlHandle);
+    $status = curl_getinfo($curlHandle, CURLINFO_RESPONSE_CODE);
+
+    // Kontrollera svar och skriv ut resultatet
+    if ($status === 400) {
+        echo "<p class='ok'>Fick förväntat svar 400</p>";
+    } else {
+        echo "<p class='error'>Fick status=$status istället för förväntat 400</p>";
     }
 }
