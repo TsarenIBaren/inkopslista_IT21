@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require_once "../php/functioner.php";
+require_once "../php/funktioner.php";
 
 try {
     // Skapa handle till curl för att läsa svaret
@@ -56,18 +56,18 @@ function varaOK($curlHandle)
     $status = curl_getinfo($curlHandle, CURLINFO_RESPONSE_CODE);
 
     // SKriv ut resultatet
-    if ($status===400) {
-        echo "<p class='ok'>Förväntat svar 400</p>";
+    if ($status===200) {
+        echo "<p class='ok'>Förväntat svar 200</p>";
         $svar = json_decode($jsonSvar);
         $id = $svar->id;
-        echo "id=$id";
+        $db->exec("DELETE FROM varor WHERE id=$id");
     } else {
-        echo "<p class='error'>Fick status=$status istället för förväntat 405</p>";
+        echo "<p class='error'>Fick status=$status istället för förväntat 200</p>";
     }
 
 }
 
-function varaSaknas($curlHandle){
+function varaForLangtNamn($curlHandle){
     // Sätt anrop till POST
     curl_setopt($curlHandle, CURLOPT_POST, true);
 
@@ -84,23 +84,24 @@ function varaSaknas($curlHandle){
     // SKriv ut resultatet
     if ($status===400) {
         echo "<p class='ok'>Förväntat svar 400</p>";
-        $svar = json_decode($jsonSvar);
-        $id = $svar->id;
-        $db->exec("DELETE FROM varor WHERE id=$id");
     } else {
         echo "<p class='error'>Fick status=$status istället för förväntat 405</p>";
     }
 }
 
-function felMetod($curlHandle) 
-{
-    // Gör anrop och ta hand om retursträngen
-    $jsonSvar = curl_exec(curlHandle);
-    //Hämta status för anropet
+function varaSaknas($curlHandle){
+    // Sätt anrop till POST
+    curl_setopt($curlHandle, CURLOPT_POST, true);
+
+    // Gör anrop och ta hand om retursträng
+    $jsonSvar = curl_exec($curlHandle);
+
+    // Läs status för anropet
     $status = curl_getinfo($curlHandle, CURLINFO_RESPONSE_CODE);
 
-    if($status === 405) {
-        echo "<p class='ok'>Svar 405 stämmer med förväntat svar</p>";
+    // SKriv ut resultatet
+    if ($status===400) {
+        echo "<p class='ok'>Förväntat svar 400</p>";
     } else {
         echo "<p class='error'>Fick status=$status istället för förväntat 405</p>";
     }

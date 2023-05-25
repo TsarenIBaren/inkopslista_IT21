@@ -33,7 +33,7 @@ function getStatusMeddelande(int $status): string {
         case 403:
             return "HTTP/1.1 403 Forbidden";
         case 405:
-            return "HTTP/1.1 200 Method not allowed";
+            return "HTTP/1.1 405 Method not allowed";
         default:
             return "HTTP/1.1 500 Internal Server Error";
     }

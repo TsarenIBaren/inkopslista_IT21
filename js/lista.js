@@ -5,6 +5,9 @@ window.onload = function(){
     document.getElementById("varabutton").onclick = function(){
         saveProduct();
     }
+    document.getElementById("allabutton").onclick = function(){
+        deleteAllProducts();
+    }
 }
 
 function getProducts(){
@@ -26,9 +29,13 @@ function appendProducts(data){
 
     for(let i=0;i<data.length;i++){
         let rad=document.createElement("tr");
+
         let checkboxtd=document.createElement("td");
         let checkbox=document.createElement("input");
         checkbox.setAttribute("type", "checkbox");
+        if (data[i].checked) {
+            checkbox.checked=1;
+        }
         checkbox.onclick=function(){
             checkProduct(data.id);
         }
@@ -52,7 +59,7 @@ function appendProducts(data){
         raderaicon.classList.add("material-icons");
         raderaicon.innerHTML="delete";
         raderaicon.onclick=function(){
-            deleteProduct(data[i].id);
+            deleteProduct(data[i].id, data[i].namn);
         }
         raderatd.appendChild(raderaicon);
 

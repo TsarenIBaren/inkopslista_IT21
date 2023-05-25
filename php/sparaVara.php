@@ -27,7 +27,7 @@ $db=connectDB();
 $sql="INSERT INTO varor (namn) VALUES (:vara)";
 $stmt=$db->prepare($sql);
 
-$db->execute(['vara'=>$vara]);
+$stmt->execute(['vara'=>$vara]);
 $id=$db->lastInsertId();
 
 

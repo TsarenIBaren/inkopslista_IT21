@@ -8,7 +8,7 @@ try {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
     // Testa!
-    testOK();
+    testOK($ch);
 
 } catch (Exception $e) {
     echo "<p class='error'>";
@@ -20,16 +20,16 @@ try {
     curl_close($ch);
 }
 
-function testOK($curlHandle);
+function testOK($curlHandle)
 {
     // Anropar hämta alla och sparar svaret i en variabel
-    $svarJSON= include "../php/hamtaAlla.php";
+    $svarJSON= curl_exec($curlHandle);
 
     // Gör om till objekt
     $svar = json_decode($svarJSON);
     if(is_array($svar)) {   // Svaret är en array
         if(count($svar)>0) {    // Det finns radera
-            echo "<p class='ok'>Hämta alla OK, " .count($svar) . "rader returnerades</p>"
+            echo "<p class='ok'>Hämta alla OK, " .count($svar) . "rader returnerades</p>";
         } else {
             echo "<p class='ok'>Hämta alla OK, inga radera fanns</p>";
         }
