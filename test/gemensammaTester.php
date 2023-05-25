@@ -39,3 +39,18 @@ function kryssaVara(int $id):void {
     $db=connectDB();
     $db->query("UPDATE vara SET checked=1 WHERE id=$id");
 }
+function hamtaAllaVaror():array {
+    $db = connectDB();
+    $stmt=$db->query("SELECT * FROM varor");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function aterstallDB($varor):void {
+    $db=connectDB();
+    $sql="INSERT INTO varor (id, namn, checked) VALUES (:id, :namn, :checked)";
+    $stmt=$db->prepare($sql);
+
+    foreach ($varor as $value) {
+        $stmt->execute($value);
+    }
+}

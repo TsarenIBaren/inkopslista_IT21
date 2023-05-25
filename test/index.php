@@ -19,7 +19,7 @@ require_once "gemensammaTester.php";
         <h2>Kryssa vara</h2>
         <?php require_once "testKryssaVara.php" ?>
         <h2>Radera alla varor</h2>
-        <?php require_once "testRaderaAlla.php" ?>
+        <?php require_once "testRaderaAllaVaror.php" ?>
         <h2>Radera valda varor</h2>
         <?php require_once "testRaderaValda.php" ?>
         <h2>Radera enskild vara</h2>
