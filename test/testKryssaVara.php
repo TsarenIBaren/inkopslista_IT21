@@ -185,21 +185,3 @@ function idBokstav($curlHandle) {
         echo "<p class='error'>Fick status=$status istället för förväntat 400</p>";
     }
 }
-
-function idSaknas($curlHandle)
-{
-    // Sätt anropsmetod till POST
-    curl_setopt($curlHandle, CURLOPT_POST, true);
-
-    // Anropa och ta hand om svaret
-    $jsonSvar=curl_exec($curlHandle);
-    $status=curl_getinfo($curlHandle, CURLINFO_RESPONSE_CODE);
-
-    // Kontrollera svar och skriv ut text
-    if($status===400) {
-        echo "<p class='ok'>Förväntat svar 400</p>";
-    } else {
-        echo "<p class='error'>Svar med status=$status istället för förväntat 400</p>";
-
-    }
-}
