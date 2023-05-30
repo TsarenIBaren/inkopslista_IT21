@@ -8,6 +8,9 @@ window.onload = function(){
     document.getElementById("allabutton").onclick = function(){
         deleteAllProducts();
     }
+    document.getElementById("valdabutton").onclick = function(){
+        deleteCheckedProducts();
+    }
 }
 
 function getProducts(){
@@ -37,7 +40,9 @@ function appendProducts(data){
             checkbox.checked=1;
         }
         checkbox.onclick=function(){
-            checkProduct(data.id);
+            checkProduct(data[i].id);
+            console.log(data[i]);
+            // data.id är inte ett ID
         }
         checkboxtd.appendChild(checkbox);
 

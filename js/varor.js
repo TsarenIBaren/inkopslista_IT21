@@ -23,19 +23,17 @@ function saveProduct(){
 
     varanode.value="";
 
-function editVaraForm(id){
+}
+
+    function editVaraForm(id){
     document.getElementById("varainput").value = document.getElementById("vara" + id).innerHTML;
-    document.getElementById("varabutton"),onclick=function () {
+    document.getElementById("varabutton").onclick=function () {
         editProduct(id);
     }
     document.getElementById("varabutton").innerHTML="spara"
 }
 
 function editProduct(id){
-    console.log("vara"+id);
-}
-
-function editProduct(){
     let varanode = document.getElementById('varainput');
     let vara = varanode.value;
 
@@ -65,7 +63,7 @@ function editProduct(){
     }
     document.getElementById("varabutton").innerHTML= "Lägg till"
 }
-}
+
 
 function deleteProduct(id,namn){
     if(confirm("Vill du radera "+namn+"?")){
